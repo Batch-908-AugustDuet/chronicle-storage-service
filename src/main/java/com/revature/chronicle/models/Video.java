@@ -37,5 +37,5 @@ public class Video {
     @JoinTable(name = "video_tag",
             joinColumns = @JoinColumn(name = "video_id", referencedColumnName = "video_id", columnDefinition = "INT"),
             inverseJoinColumns = @JoinColumn(name = "tag_id",referencedColumnName = "tag_id", columnDefinition = "INT"))
-    private Set<Tag> video_tags;
+    private Set<Tag> videoTags;
 }

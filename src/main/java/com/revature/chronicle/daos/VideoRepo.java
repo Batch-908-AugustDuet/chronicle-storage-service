@@ -15,8 +15,8 @@ import java.util.Optional;
 @Repository
 public interface VideoRepo extends JpaRepository<Video, Integer> {
 //    Needs custom implementation
-      @Query(value = "SELECT * FROM video WHERE tag = ?", nativeQuery = true) //@Query annotation is used to perform complex/custom queries, nativeQuery means plain SQL
-      List<Video> findVideosByTag(Tag tag); //TODO: GOAL! of this method is to find videos containing a specific tag
+//      @Query(value = "SELECT * FROM video WHERE tag = ?", nativeQuery = true) //@Query annotation is used to perform complex/custom queries, nativeQuery means plain SQL
+//      List<Video> findVideosByTag(Tag tag); //TODO: GOAL! of this method is to find videos containing a specific tag
 
       //@Query(value = "SELECT * FROM videos", nativeQuery = true)
       //List<Video> findVideoByTags(Tag tag); //TODO: GOAL! of this method is to find videos containing multiple specific tags

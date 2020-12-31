@@ -1,7 +1,10 @@
 package com.revature.chronicle.models;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -10,7 +13,10 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="tag")
+@Builder
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Tag {
     @Id
     @Column(name="tag_id")

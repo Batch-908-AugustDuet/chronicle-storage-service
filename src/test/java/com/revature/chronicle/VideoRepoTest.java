@@ -14,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -56,34 +57,42 @@ public class VideoRepoTest {
         tag3.setName("Technology");
         tag3.setValue("Spring");
         //save the tags into the our h2 db
-        tagRepo.save(tag1);
-        tagRepo.save(tag2);
-        tagRepo.save(tag3);
+//        tagRepo.save(tag1);
+//        tagRepo.save(tag2);
+//        tagRepo.save(tag3);
+
         //place the tags in the set
-        Set<Tag> tag_set1 = (Set<Tag>) tagRepo.findAll(); //cast from list to ser (suppress the warning)
+        //Set<Tag> tag_set1 = (Set<Tag>) tagRepo.findAll(); //cast from list to ser (suppress the warning)
+        Set<Tag> tag_set1 = new HashSet<>();
+        //tag_set1.addAll(tagRepo.findAll());
+
+
+
         //build the videos using user1 and tag_set1
         Video video1 = Video.builder()
                 .url("video1.com")
                 .description("This is video 1")
                 .user(user1) //ManyToOne: many videos can be uploaded by one user
-                .video_tags(tag_set1) //ManyToMany: Many videos can share the same (Many) tags
+                .videoTags(tag_set1) //ManyToMany: Many videos can share the same (Many) tags
                 .build();
         Video video2 = Video.builder()
                 .url("video2.com")
                 .description("This is video 2")
                 .user(user1) //ManyToOne: many videos can be uploaded by one user
-                .video_tags(tag_set1) //ManyToMany: Many videos can share the same (Many) tags
+                .videoTags(tag_set1) //ManyToMany: Many videos can share the same (Many) tags
                 .build();
         //save the videos into our h2 db
+        System.out.println("Where is this printing if at all?" + video1.toString());
+
         videoRepo.save(video1);
         videoRepo.save(video2);
     }
 
-    @AfterEach
+    @AfterEach //NOTE: ORDERS MATTERS
     void tearDown() {
+        videoRepo.deleteAll();
         userRepo.deleteAll();
         tagRepo.deleteAll();
-        videoRepo.deleteAll();
     }
 
 //    @Test

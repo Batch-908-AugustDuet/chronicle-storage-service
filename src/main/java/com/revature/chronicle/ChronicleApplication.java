@@ -59,7 +59,7 @@ public class ChronicleApplication {
 			v.setUrl("http://blah.com");
 			Set<Tag> tags = new HashSet<>();
 			tags.add(t);
-			v.setVideo_tags(tags);
+			v.setVideoTags(tags);
 
 			videoRepo.save(v);
 
