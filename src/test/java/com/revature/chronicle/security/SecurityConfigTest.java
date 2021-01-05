@@ -20,6 +20,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -75,14 +76,14 @@ public class SecurityConfigTest {
         OAuth2ResourceServerConfigurer<HttpSecurity>.JwtConfigurer jwtConfigurerMock =
                 mock(OAuth2ResourceServerConfigurer.JwtConfigurer.class);
 
-                        // when statement
+        // when statements
         when(httpSecurityMock.csrf()).thenReturn(csrfConfigurerMock);
         when(csrfConfigurerMock.disable()).thenReturn(httpSecurityMock);
         when(httpSecurityMock.cors()).thenReturn(corsConfigurerMock);
         when(corsConfigurerMock.configurationSource(any(CorsConfigurationSource.class)))
                 .thenReturn(corsConfigurerMock);
         when(securityConfigurerAdapterMock.and()).thenReturn(httpSecurityMock);
-        when(httpSecurityMock.authorizeRequests()).thenReturn(mockExpressionRegistry);
+        doReturn(mockExpressionRegistry).when(httpSecurityMock).authorizeRequests();
         when(mockExpressionRegistry.antMatchers(anyString())).thenReturn(authURLMock);
         when(authURLMock.authenticated()).thenReturn(mockExpressionRegistry);
         when(httpSecurityMock.oauth2ResourceServer()).thenReturn(OAuthMock);
