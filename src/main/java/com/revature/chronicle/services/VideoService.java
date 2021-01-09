@@ -67,6 +67,12 @@ public class VideoService {
         return desiredVideos;
     }
 
+    /**
+     * Calls findAll() from VideoRepo (JpaRepository method)
+     * Finds all videos stored in the database
+     * @return returns a list of all the videos found in the "videos" database table
+     * if Exception is caught, it returns a new ArrayList()
+     */
     public List<Video> findAll() {
         try{
             return videoRepo.findAll();
@@ -77,6 +83,13 @@ public class VideoService {
         }
     }
 
+    /**
+     * Calls findById() from VideoRepo (JpaRepository method)
+     * Finds a Video by matching its id with the parameter id passed into the method
+     * @param id the id used to match a Video's id stored in the "videos" database table
+     * @return a Video matching the id passed in as a parameter
+     * if Exception is caught, it returns an empty Optional instance
+     */
     public Optional<Video> findById(int id){
         try{
             return videoRepo.findById(id);
@@ -87,6 +100,13 @@ public class VideoService {
         }
     }
 
+    /**
+     * Calls save() from VideoRepo (JpaRepository method)
+     * Saves a Video into the "videos" database table
+     * @param video the video to be saved into our database
+     * @return boolean true if the video was saved
+     * if Exception is caught, it returns false
+     */
     public boolean save(Video video) {
         System.out.println("Saving video");
         try{
@@ -100,6 +120,13 @@ public class VideoService {
         }
     }
 
+    /**
+     * Calls delete() from VideoRepo (JpaRepository method)
+     * deletes a Video from the "videos" database table
+     * @param video the video to be removed from our database
+     * @return boolean true if the video was removed
+     * if Exception is caught, it returns false
+     */
     public boolean deleteVideo(Video video) {
         try{
             videoRepo.delete(video);

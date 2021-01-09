@@ -27,9 +27,9 @@ public class NoteService {
     }
 
     /**
-     * Finds all Videos that have the all of provided tags.
+     * Finds all Notes that have the all of provided tags.
      * @param tags the tags provided by the user
-     * @return a list of videos that have all tags
+     * @return a list of notes that have all tags
      */
     public List<Note> findAllNotesByTags(List<Tag> tags){
         System.out.println("Entered service method");
@@ -67,17 +67,12 @@ public class NoteService {
         return desiredNotes;
     }
 
-    public boolean save(Note note) {
-        try {
-            noteRepo.save(note);
-            return true;
-        }
-        catch(Exception e) {
-            logger.warn(e.getMessage());
-            return false;
-        }
-    }
-
+    /**
+     * Calls findAll() from NoteRepo (JpaRepository method)
+     * Finds all notes stored in the database
+     * @return returns a list of all the notes found in the "notes" database table
+     * if Exception is caught, it returns a new ArrayList()
+     */
     public List<Note> findAll() {
         try {
             return noteRepo.findAll();
@@ -88,6 +83,13 @@ public class NoteService {
         }
     }
 
+    /**
+     * Calls findById() from NoteRepo (JpaRepository method)
+     * Finds a Note by matching its id with the parameter id passed into the method
+     * @param id the id used to match a Note's id stored in the "notes" database table
+     * @return a Note matching the id passed in as a parameter
+     * if Exception is caught, it returns an empty Optional instance
+     */
     public Optional<Note> findById(int id) {
         // Changing method to return an Optional<Note> for consistency with the video service.
         //
@@ -103,6 +105,31 @@ public class NoteService {
         }
     }
 
+    /**
+     * Calls save() from NoteRepo (JpaRepository method)
+     * Saves a Note into the "notes" database table
+     * @param note the note to be saved into our database
+     * @return boolean true if the note was saved
+     * if Exception is caught, it returns false
+     */
+    public boolean save(Note note) {
+        try {
+            noteRepo.save(note);
+            return true;
+        }
+        catch(Exception e) {
+            logger.warn(e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Calls delete() from NoteRepo (JpaRepository method)
+     * deletes a Note from the "notes" database table
+     * @param note the note to be removed from our database
+     * @return boolean true if the note was removed
+     * if Exception is caught, it returns false
+     */
     public boolean deleteNote(Note note) {
         try {
             noteRepo.delete(note);
