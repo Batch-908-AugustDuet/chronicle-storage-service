@@ -29,6 +29,9 @@ public class Video extends Media{
     @Column(name = "url")
     private String url;
 
+    @Column(name = "title")
+    private String title;
+
     @Column(name = "description")
     private String description;
 
@@ -45,7 +48,8 @@ public class Video extends Media{
             inverseJoinColumns = @JoinColumn(name = "tag_id",referencedColumnName = "tag_id", columnDefinition = "INT"))
     private List<Tag> tags;
 
-    public Video(String description, Date date, String user, List<Tag> tags) {
+    public Video(String title, String description, Date date, String user, List<Tag> tags) {
+        this.title = title;
         this.description = description;
         this.date = date;
         this.user = user;

@@ -12,6 +12,9 @@ public abstract class Media {
     public abstract String getUrl();
     public abstract void setUrl(String url);
 
+    public abstract String getTitle();
+    public abstract void setTitle(String title);
+
     public abstract String getDescription();
     public abstract void setDescription(String description);
 
